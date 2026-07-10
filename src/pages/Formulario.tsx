@@ -1029,7 +1029,7 @@ export const Formulario: React.FC = () => {
                   <input 
                     type="text" 
                     required
-                    value={teacherNombres}
+                    value={teacherTipo === 'docente' ? enmascararNombre(teacherNombres) : teacherNombres}
                     onChange={(e) => setTeacherNombres(e.target.value)}
                     disabled={teacherSubmitting || teacherTipo === 'docente'}
                     readOnly={teacherTipo === 'docente'}
@@ -1044,7 +1044,7 @@ export const Formulario: React.FC = () => {
                   <input 
                     type="text" 
                     required
-                    value={teacherApellidos}
+                    value={teacherTipo === 'docente' ? enmascararNombre(teacherApellidos) : teacherApellidos}
                     onChange={(e) => setTeacherApellidos(e.target.value)}
                     disabled={teacherSubmitting || teacherTipo === 'docente'}
                     readOnly={teacherTipo === 'docente'}
