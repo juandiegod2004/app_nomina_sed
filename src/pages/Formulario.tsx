@@ -344,18 +344,17 @@ export const Formulario: React.FC = () => {
   };
 
   const handleDeleteRow = async (teacher: Teacher) => {
-    const isCorrection = existingReport && existingReport.estado === 'observado';
     const isApproved = existingReport && existingReport.estado === 'aprobado';
     
-    if (isApproved || isCorrection) {
-      showAlert('warning', 'Acción No Permitida', 'No se pueden eliminar filas de un reporte aprobado u observado.');
+    if (isApproved) {
+      showAlert('warning', 'Acción No Permitida', 'No se pueden eliminar filas de un reporte aprobado.');
       return;
     }
 
     const detailId = hoursMatrix[teacher.id]?.id;
 
-    // Si tiene ID en la base de datos (ya está guardado) y el reporte está pendiente
-    if (detailId && existingReport && existingReport.estado === 'pendiente') {
+    // Si tiene ID en la base de datos (ya está guardado) y el reporte está pendiente u observado
+    if (detailId && existingReport && (existingReport.estado === 'pendiente' || existingReport.estado === 'observado')) {
       showAlert(
         'warning',
         'Confirmar Eliminación',
@@ -882,7 +881,7 @@ export const Formulario: React.FC = () => {
 
                       {/* Acción de Eliminar */}
                       <td className="py-2.5 px-2 text-center select-none">
-                        {(!existingReport || existingReport.estado === 'pendiente') && (
+                        {(!existingReport || existingReport.estado === 'pendiente' || existingReport.estado === 'observado') && (
                           <button
                             type="button"
                             onClick={() => handleDeleteRow(teacher)}
@@ -988,7 +987,7 @@ export const Formulario: React.FC = () => {
 
                       {/* Acción de Eliminar */}
                       <td className="py-2.5 px-2 text-center select-none">
-                        {(!existingReport || existingReport.estado === 'pendiente') && (
+                        {(!existingReport || existingReport.estado === 'pendiente' || existingReport.estado === 'observado') && (
                           <button
                             type="button"
                             onClick={() => handleDeleteRow(teacher)}
