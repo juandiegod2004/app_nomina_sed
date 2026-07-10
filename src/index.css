@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +8,106 @@
   body {
     @apply bg-background text-on-background font-sans antialiased selection:bg-secondary selection:text-white;
   }
+}
+
+/* --- ACCESSIBILITY CUSTOM OVERRIDES --- */
+
+/* Legible Font */
+body.fuente-legible, body.fuente-legible * {
+  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+/* Force Left Align */
+body.force-align-left, body.force-align-left * {
+  text-align: left !important;
+}
+
+/* Force Bold */
+body.force-bold, body.force-bold * {
+  font-weight: 700 !important;
+}
+
+/* Hide non-essential images */
+body.hide-images img:not(.accessibility-widget-panel img):not(.logo-img):not(.brand-logo) {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Highlight Interactive Elements */
+body.highlight-content a:focus,
+body.highlight-content button:focus,
+body.highlight-content input:focus,
+body.highlight-content select:focus,
+body.highlight-content textarea:focus,
+body.highlight-content [tabindex]:focus {
+  outline: 4px solid #EF7D00 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px rgba(239, 125, 0, 0.4) !important;
+}
+body.highlight-content a,
+body.highlight-content button,
+body.highlight-content input,
+body.highlight-content select,
+body.highlight-content textarea {
+  border: 2px solid #006492 !important;
+}
+
+/* Stop CSS animations and transitions */
+body.stop-animations, body.stop-animations * {
+  animation-duration: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* Highlight Links */
+body.highlight-links a {
+  color: #0071BB !important;
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+}
+
+/* Big Cursor */
+body.big-cursor, body.big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath fill='%23000000' stroke='%23ffffff' stroke-width='2' d='M0,0 L0,20 L5,15 L12,27 L15,25 L8,13 L15,13 Z'/%3E%3C/svg%3E"), auto !important;
+}
+
+/* Line Height Modifiers */
+body.line-height-2, body.line-height-2 * {
+  line-height: 1.75 !important;
+}
+body.line-height-3, body.line-height-3 * {
+  line-height: 2.1 !important;
+}
+
+/* Letter Spacing Modifiers */
+body.letter-spacing-2, body.letter-spacing-2 * {
+  letter-spacing: 0.08em !important;
+}
+body.letter-spacing-3, body.letter-spacing-3 * {
+  letter-spacing: 0.16em !important;
+}
+
+/* Monochrome Mode */
+body.monocromo {
+  filter: grayscale(100%) !important;
+}
+
+/* High Contrast Mode */
+body.alto-contraste {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+body.alto-contraste :not(.accessibility-widget-panel):not(.accessibility-widget-panel *):not(.accessibility-widget-btn):not(.accessibility-widget-btn *):not(.material-symbols-outlined) {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border-color: #ffffff !important;
+}
+body.alto-contraste a, 
+body.alto-contraste button:not(.accessibility-widget-btn) {
+  color: #00ffff !important;
+  text-decoration: underline !important;
+}
+body.alto-contraste svg path {
+  fill: #ffff00 !important;
 }

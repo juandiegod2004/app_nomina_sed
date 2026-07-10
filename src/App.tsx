@@ -11,6 +11,7 @@ import { Formulario } from './pages/Formulario';
 import { ResetPassword } from './pages/ResetPassword';
 import { NotFound } from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { AccessibilityWidget } from './components/AccessibilityWidget';
 
 function App() {
   const { profile, loading } = useAuth();
@@ -147,6 +148,7 @@ function App() {
         {/* Captura de rutas inválidas */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <AccessibilityWidget />
     </Router>
   );
 }
