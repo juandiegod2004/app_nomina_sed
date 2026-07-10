@@ -58,20 +58,6 @@ function App() {
     }
   };
 
-  // Redirección de comodín '*'
-  const WildcardRedirector = () => {
-    if (!profile) {
-      return <Navigate to="/login" replace />;
-    }
-    if (profile.requiere_cambio_clave) {
-      return <Navigate to="/reset-password" replace />;
-    }
-    if (profile.rol === 'admin_nomina') {
-      return <Navigate to="/dashboard" replace />;
-    } else {
-      return <Navigate to="/formulario" replace />;
-    }
-  };
 
   return (
     <Router>

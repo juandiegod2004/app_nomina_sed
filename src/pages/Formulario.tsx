@@ -102,20 +102,22 @@ export const Formulario: React.FC = () => {
     const sumDocentes = currentSums.residuo + currentSums.necesidades;
     const limitDocentes = prorratedTopes.residuo + prorratedTopes.necesidades_docentes;
     
-    // Imprimir en consola para depuración técnica solicitada
-    console.log('--- VALIDACIÓN DE TOPES EN TIEMPO REAL ---');
-    console.log('Días autorizados por resolución:', iedTopesBase?.dias_autorizados);
-    console.log('Tope Residuo Base:', iedTopesBase?.residuo, '-> Prorrateado:', prorratedTopes.residuo);
-    console.log('Tope Necesidades Docentes Base:', iedTopesBase?.necesidades_docentes, '-> Prorrateado:', prorratedTopes.necesidades_docentes);
-    console.log('Tope Combinado Docentes (Residuo + Sustitución):', limitDocentes);
-    console.log('Suma Reportada Docentes (Residuo + Sustitución):', sumDocentes);
-    console.log('Tope Adultos Base:', iedTopesBase?.adultos, '-> Prorrateado:', prorratedTopes.adultos);
-    console.log('Suma Reportada Adultos:', currentSums.adultos);
-    console.log('Tope Jornada Única Base:', iedTopesBase?.jornada_unica, '-> Prorrateado:', prorratedTopes.jornada_unica);
-    console.log('Suma Reportada Jornada Única:', currentSums.jornadaUnica);
-    console.log('Excede Límite Docentes Combinado:', sumDocentes > limitDocentes);
-    console.log('Excede Límite Adultos:', currentSums.adultos > prorratedTopes.adultos);
-    console.log('Excede Límite Jornada Única:', currentSums.jornadaUnica > prorratedTopes.jornada_unica);
+    // Imprimir en consola para depuración técnica solicitada (solo en desarrollo)
+    if (import.meta.env.DEV) {
+      console.log('--- VALIDACIÓN DE TOPES EN TIEMPO REAL ---');
+      console.log('Días autorizados por resolución:', iedTopesBase?.dias_autorizados);
+      console.log('Tope Residuo Base:', iedTopesBase?.residuo, '-> Prorrateado:', prorratedTopes.residuo);
+      console.log('Tope Necesidades Docentes Base:', iedTopesBase?.necesidades_docentes, '-> Prorrateado:', prorratedTopes.necesidades_docentes);
+      console.log('Tope Combinado Docentes (Residuo + Sustitución):', limitDocentes);
+      console.log('Suma Reportada Docentes (Residuo + Sustitución):', sumDocentes);
+      console.log('Tope Adultos Base:', iedTopesBase?.adultos, '-> Prorrateado:', prorratedTopes.adultos);
+      console.log('Suma Reportada Adultos:', currentSums.adultos);
+      console.log('Tope Jornada Única Base:', iedTopesBase?.jornada_unica, '-> Prorrateado:', prorratedTopes.jornada_unica);
+      console.log('Suma Reportada Jornada Única:', currentSums.jornadaUnica);
+      console.log('Excede Límite Docentes Combinado:', sumDocentes > limitDocentes);
+      console.log('Excede Límite Adultos:', currentSums.adultos > prorratedTopes.adultos);
+      console.log('Excede Límite Jornada Única:', currentSums.jornadaUnica > prorratedTopes.jornada_unica);
+    }
     
     return {
       residuo_necesidades: sumDocentes > limitDocentes,
