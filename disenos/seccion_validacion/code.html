@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validación de Reportes - Secretaría de Educación del Magdalena</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "surface-variant": "#e4e2e1",
+                        "on-surface-variant": "#434750",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-container": "#999a9a",
+                        "on-background": "#1b1c1c",
+                        "on-secondary-fixed-variant": "#004b6f",
+                        "on-primary-fixed-variant": "#224583",
+                        "outline-variant": "#c4c6d2",
+                        "secondary": "#006492",
+                        "background": "#fbf9f8",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "secondary-fixed": "#c9e6ff",
+                        "primary-fixed-dim": "#aec6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#7999dc",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f0",
+                        "outline": "#747781",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eae8e7",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-bright": "#fbf9f8",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "inverse-surface": "#303030",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-error-container": "#93000a",
+                        "primary": "#001b44",
+                        "primary-container": "#002f6c",
+                        "inverse-primary": "#aec6ff",
+                        "surface-tint": "#3c5d9c",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-container": "#00486a",
+                        "surface-container": "#f0eded",
+                        "secondary-fixed-dim": "#8bceff",
+                        "surface": "#fbf9f8",
+                        "on-primary-fixed": "#001a42",
+                        "tertiary": "#1b1d1d",
+                        "on-surface": "#1b1c1c",
+                        "secondary-container": "#45baff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#303232",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-max": "1200px",
+                        "base": "8px",
+                        "margin-desktop": "40px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Work Sans"],
+                        "headline-lg-mobile": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "headline-md": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "body-sm": ["Work Sans"],
+                        "label-sm": ["Work Sans"],
+                        "headline-xl": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-surface-container-low border-r border-outline-variant flex flex-col h-full py-stack-md hidden md:flex z-40">
+<div class="px-4 mb-6">
+<div class="flex items-center gap-4">
+<img alt="Escudo del Departamento del Magdalena" class="w-12 h-12 object-contain" data-alt="Official shield logo of the Magdalena Department in Colombia, featuring traditional institutional elements in gold and blue on a clear white background. Professional, high quality, vector style design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJZ5FnHBiLeXCGg2FQ3VknAvDbOXoZ_9g1klTcd_1gEQoxeVZzJrrULV2jiCp1Zu-tUM19qZw5h4B3bOHP8NflHZ8Xtl9671QxHqHVn5fKN3uY1EpNUPlRGTyXEcIMUrUz7VIZSDut5Ob6yGZQwEnss1tIztvW3KPHYbfUrmVpM0rUlEMgrjKua-M2UGyE49Ct3PLV4ZScT_nYnUaXZwbhjrmyfglQB2x0caAJMSQeUi8kGpSNFm5fYiU6pGDe81J5iHuK0dSzJ4I"/>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Gestión Educativa</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Administrador Central</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Panel de Control
+            </a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg flex items-center px-4 py-3 mx-2 my-1 font-label-md text-label-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mr-3">check_circle</span>
+                Validación
+            </a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+                Gestión Docente
+            </a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+                Reportes
+            </a>
+</nav>
+<div class="mt-auto px-2 space-y-1">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded font-label-md text-label-md hover:opacity-90 mb-4 transition-opacity">Nueva Solicitud</button>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+                Configuración
+            </a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen pt-20">
+<!-- TopAppBar -->
+<header class="bg-surface docked full-width top-0 z-50 border-b border-outline-variant fixed w-full md:w-[calc(100%-16rem)] right-0">
+<!-- GOV.CO Bar -->
+<div class="bg-primary text-on-primary py-1 px-margin-desktop text-xs flex justify-between items-center hidden md:flex">
+<span class="font-bold">GOV.CO</span>
+<span>Visita la sede electrónica</span>
+</div>
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Secretaría de Educación del Magdalena</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-low border border-outline-variant rounded py-2 px-4 pl-10 text-body-sm focus:outline-none focus:border-secondary w-64" placeholder="Buscar..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+</div>
+<button class="text-primary hover:text-secondary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-primary hover:text-secondary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-primary mb-2">Validación de Reportes - Nómina</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Gestione y revise los reportes de horas extras enviados por las Instituciones Educativas Departamentales.</p>
+</div>
+<!-- Filters -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md mb-stack-lg shadow-sm">
+<h3 class="font-headline-md text-headline-md font-semibold mb-4 text-primary">Filtros de Búsqueda</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Institución Educativa (IED)</label>
+<select class="w-full bg-surface-bright border border-outline-variant rounded p-2 text-body-md focus:outline-none focus:border-secondary">
+<option value="">Todas las Instituciones</option>
+<option value="1">IED San José</option>
+<option value="2">IED Normal Superior</option>
+<option value="3">IED Liceo Celedon</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Mes de Reporte</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded p-2 text-body-md focus:outline-none focus:border-secondary" type="month" value="2024-05"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Estado</label>
+<select class="w-full bg-surface-bright border border-outline-variant rounded p-2 text-body-md focus:outline-none focus:border-secondary">
+<option value="">Todos los Estados</option>
+<option value="pendiente">Pendiente</option>
+<option value="observado">Observado</option>
+<option value="aprobado">Aprobado</option>
+</select>
+</div>
+</div>
+<div class="mt-4 flex justify-end gap-2">
+<button class="bg-surface-container-low text-primary border border-primary rounded px-4 py-2 font-label-md text-label-md hover:bg-surface-container-high transition-colors">Limpiar</button>
+<button class="bg-primary text-on-primary rounded px-4 py-2 font-label-md text-label-md hover:bg-primary-container transition-colors">Aplicar Filtros</button>
+</div>
+</div>
+<!-- Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Radicado</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant min-w-[200px]">IED</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant">Rector</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Fecha de Envío</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Total Horas</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant">Estado</th>
+<th class="p-4 font-label-md text-label-md text-on-surface-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-body-sm text-body-sm">RAD-2024-001</td>
+<td class="p-4 font-body-sm text-body-sm font-semibold text-primary">IED San José</td>
+<td class="p-4 font-body-sm text-body-sm">Carlos Ramírez</td>
+<td class="p-4 font-body-sm text-body-sm">05 May 2024</td>
+<td class="p-4 font-body-sm text-body-sm text-center">120</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                                        Pendiente
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-green-600 hover:bg-green-50 rounded" title="Aprobar">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-1 text-orange-600 hover:bg-orange-50 rounded" onclick="document.getElementById('obs-1').classList.toggle('hidden')" title="Observar">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="p-1 text-error hover:bg-error-container rounded" title="Rechazar">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Observar Field Row 1 -->
+<tr class="hidden bg-surface-container-low border-b border-outline-variant" id="obs-1">
+<td class="p-4" colspan="7">
+<div class="flex gap-2 items-start">
+<textarea class="w-full bg-surface-bright border border-outline-variant rounded p-2 text-body-sm focus:outline-none focus:border-secondary" placeholder="Ingrese una observación para el rector..." rows="2"></textarea>
+<button class="bg-primary text-on-primary rounded px-3 py-2 font-label-sm text-label-sm whitespace-nowrap">Enviar Observación</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4 font-body-sm text-body-sm">RAD-2024-002</td>
+<td class="p-4 font-body-sm text-body-sm font-semibold text-primary">IED Normal Superior</td>
+<td class="p-4 font-body-sm text-body-sm">Marta Gómez</td>
+<td class="p-4 font-body-sm text-body-sm">04 May 2024</td>
+<td class="p-4 font-body-sm text-body-sm text-center">85</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+                                        Pendiente
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-green-600 hover:bg-green-50 rounded" title="Aprobar">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="p-1 text-orange-600 hover:bg-orange-50 rounded" title="Observar">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="p-1 text-error hover:bg-error-container rounded" title="Rechazar">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mostrando 1-2 de 45 registros</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low disabled:opacity-50 text-body-sm">&lt;</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded text-body-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-body-sm">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-body-sm">3</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-body-sm">&gt;</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-primary dark:bg-on-primary-fixed py-stack-lg px-margin-desktop bg-primary text-on-primary flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="text-center md:text-left">
+<p class="font-headline-md text-headline-md font-bold text-on-primary mb-2">Secretaría de Educación del Magdalena</p>
+<p class="font-body-sm text-body-sm opacity-80">© 2024 Gobernación del Magdalena. Todos los derechos reservados.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-label-sm text-label-sm text-on-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Políticas de Privacidad</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Términos y Condiciones</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Mapa del Sitio</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-80 hover:opacity-100 transition-opacity" href="#">Contacto</a>
+</div>
+</footer>
+</main>
+</body></html>

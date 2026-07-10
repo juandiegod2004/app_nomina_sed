@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Rectores - Secretaría de Educación del Magdalena</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "surface-variant": "#e4e2e1",
+                    "on-surface-variant": "#434750",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-container": "#999a9a",
+                    "on-background": "#1b1c1c",
+                    "on-secondary-fixed-variant": "#004b6f",
+                    "on-primary-fixed-variant": "#224583",
+                    "outline-variant": "#c4c6d2",
+                    "secondary": "#006492",
+                    "background": "#fbf9f8",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#c9e6ff",
+                    "primary-fixed-dim": "#aec6ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#7999dc",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "outline": "#747781",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eae8e7",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-bright": "#fbf9f8",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "inverse-surface": "#303030",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f6f3f2",
+                    "on-secondary-fixed": "#001e2f",
+                    "on-error-container": "#93000a",
+                    "primary": "#001b44",
+                    "primary-container": "#002f6c",
+                    "inverse-primary": "#aec6ff",
+                    "surface-tint": "#3c5d9c",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#00486a",
+                    "surface-container": "#f0eded",
+                    "secondary-fixed-dim": "#8bceff",
+                    "surface": "#fbf9f8",
+                    "on-primary-fixed": "#001a42",
+                    "tertiary": "#1b1d1d",
+                    "on-surface": "#1b1c1c",
+                    "secondary-container": "#45baff",
+                    "primary-fixed": "#d8e2ff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#303232",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "margin-desktop": "40px",
+                    "stack-sm": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Work Sans"
+                    ],
+                    "headline-lg-mobile": [
+                            "Work Sans"
+                    ],
+                    "body-lg": [
+                            "Work Sans"
+                    ],
+                    "headline-md": [
+                            "Work Sans"
+                    ],
+                    "body-md": [
+                            "Work Sans"
+                    ],
+                    "headline-lg": [
+                            "Work Sans"
+                    ],
+                    "body-sm": [
+                            "Work Sans"
+                    ],
+                    "label-sm": [
+                            "Work Sans"
+                    ],
+                    "headline-xl": [
+                            "Work Sans"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-xl": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; background-color: #fbf9f8; color: #1b1c1c; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-background text-on-background">
+<!-- Gov.co Bar (Mock) -->
+<div class="bg-primary text-on-primary py-2 px-margin-mobile md:px-margin-desktop flex justify-between items-center text-xs">
+<div class="flex items-center gap-2">
+<img alt="Gov.co Logo" class="h-4" data-alt="A clean, minimalist vector rendering of the Colombian coat of arms in solid white against a dark navy blue background, serving as an official government header emblem. The style is flat, precise, and institutional, ensuring high legibility and a professional, authoritative tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPDmgVoz11BpAi3mHAycMotnQMQTA6a23ODfQ_A9Wg6_T2plRtPEminTcS1MNAgc08C69leS45mw75YhLg_fEO3y9QOMRdMjWFczBH5at22m-9ybtU6r4a7RmcQk-hqly9EFNX9hLqJcb1zfX6NqwoWlHQA4vqXLcFU3p8ACTptkvlTVNVomfKw2HfXKPjn7FHL570RLknX2YKpNkypr-Q40Xft3flmeCD0oTe7sfG1AuGhgYjjBtOffsAocsHiPk06-J95ED5IVk"/>
+<span>GOV.CO</span>
+</div>
+</div>
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+                    Secretaría de Educación del Magdalena
+                </span>
+</div>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-colors duration-200" href="#">Inicio</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-colors duration-200" href="#">Institucional</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-colors duration-200" href="#">Trámites</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-colors duration-200" href="#">Servicios</a>
+<a class="text-on-surface-variant font-label-md hover:text-secondary transition-colors duration-200" href="#">Transparencia</a>
+</nav>
+<div class="flex gap-4">
+<button class="text-primary hover:text-secondary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-primary hover:text-secondary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-[72px]"> <!-- Offset for TopAppBar -->
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-[72px] border-r border-outline-variant dark:border-outline py-stack-md z-40">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">
+                    M
+                </div>
+<div>
+<h3 class="font-label-md text-label-md text-primary font-bold">Gestión Educativa</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Administrador Central</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded font-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nueva Solicitud
+                </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-md text-label-md">Panel de Control</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg flex items-center px-4 py-3 mx-2 my-1" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-label-md text-label-md">Gestión Docente</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">domain</span>
+<span class="font-label-md text-label-md">Planta Física</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">school</span>
+<span class="font-label-md text-label-md">Matrículas</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+<span class="font-label-md text-label-md">Reportes</span>
+</a>
+</nav>
+<div class="mt-auto px-2 border-t border-outline-variant pt-4">
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-label-md text-label-md">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop bg-surface-bright min-h-[calc(100vh-72px)]">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-primary mb-1">Gestión de Rectores</h1>
+<p class="font-body-md text-on-surface-variant">Administración de usuarios rectores y sus IED asignadas.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2 shrink-0" onclick="document.getElementById('createUserModal').classList.remove('hidden')">
+<span class="material-symbols-outlined">person_add</span>
+                    Crear usuario
+                </button>
+</div>
+<!-- Dashboard Content: Table -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden mb-stack-lg">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h2 class="font-headline-md text-primary">Usuarios Registrados</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded font-body-sm text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Buscar rector..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-6 font-label-md text-on-surface-variant">Nombre Completo</th>
+<th class="py-3 px-6 font-label-md text-on-surface-variant">Correo Institucional</th>
+<th class="py-3 px-6 font-label-md text-on-surface-variant">IED Asignada</th>
+<th class="py-3 px-6 font-label-md text-on-surface-variant">Estado</th>
+<th class="py-3 px-6 font-label-md text-on-surface-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6">Carlos Arturo Mendoza</td>
+<td class="py-4 px-6 text-on-surface-variant">cmendoza@sedmagdalena.gov.co</td>
+<td class="py-4 px-6">I.E.D. Simón Bolívar</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#e6f4ea] text-[#1e8e3e] font-label-sm">
+                                        Activo
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-secondary hover:text-primary-container p-1 rounded-full hover:bg-surface-container-high transition-colors" title="Editar">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="text-error hover:text-on-error-container p-1 rounded-full hover:bg-error-container transition-colors ml-2" title="Desactivar">
+<span class="material-symbols-outlined text-sm">block</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6">María Fernanda Ruiz</td>
+<td class="py-4 px-6 text-on-surface-variant">mruiz@sedmagdalena.gov.co</td>
+<td class="py-4 px-6">I.E.D. San José</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#e6f4ea] text-[#1e8e3e] font-label-sm">
+                                        Activo
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-secondary hover:text-primary-container p-1 rounded-full hover:bg-surface-container-high transition-colors" title="Editar">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="text-error hover:text-on-error-container p-1 rounded-full hover:bg-error-container transition-colors ml-2" title="Desactivar">
+<span class="material-symbols-outlined text-sm">block</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors bg-surface-container-lowest">
+<td class="py-4 px-6 text-on-surface-variant">Jorge Luis Castro</td>
+<td class="py-4 px-6 text-on-surface-variant">jcastro@sedmagdalena.gov.co</td>
+<td class="py-4 px-6 text-on-surface-variant">I.E.D. Rural El Banco</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#fce8e6] text-[#c5221f] font-label-sm">
+                                        Inactivo
+                                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-secondary hover:text-primary-container p-1 rounded-full hover:bg-surface-container-high transition-colors" title="Editar">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-container-high transition-colors ml-2" title="Activar">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-sm text-on-surface-variant">
+<span>Mostrando 1 a 3 de 45 registros</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-high transition-colors">Siguiente</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Create User Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 bg-on-background/50 z-[100] flex justify-end items-stretch transition-opacity" id="createUserModal">
+<div class="bg-surface w-full max-w-md h-full shadow-xl flex flex-col transform transition-transform border-l border-outline-variant">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-md text-primary">Crear nuevo rector</h2>
+<button class="text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-container-high transition-colors" onclick="document.getElementById('createUserModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex-1 overflow-y-auto">
+<form class="flex flex-col gap-6">
+<div>
+<label class="block font-label-md text-on-surface mb-2">Nombre Completo</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Ej: Ana Martínez Ríos" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">Correo Institucional</label>
+<div class="relative">
+<input class="w-full pl-4 pr-48 py-3 border border-outline-variant rounded font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="usuario" type="text"/>
+<span class="absolute right-4 top-3.5 text-on-surface-variant font-body-md">@sedmagdalena.gov.co</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">IED Asignada (Fija)</label>
+<select class="w-full px-4 py-3 border border-outline-variant rounded font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary bg-surface">
+<option disabled="" selected="" value="">Seleccione una IED</option>
+<option value="1">I.E.D. Simón Bolívar</option>
+<option value="2">I.E.D. San José</option>
+<option value="3">I.E.D. Rural El Banco</option>
+<option value="4">I.E.D. Técnico Industrial</option>
+</select>
+<p class="mt-2 font-body-sm text-on-surface-variant text-sm">El rector solo tendrá acceso a los datos de la IED seleccionada.</p>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+<span class="ml-3 font-label-md text-on-surface">Usuario Activo</span>
+</label>
+</div>
+</form>
+</div>
+<div class="p-6 border-t border-outline-variant flex justify-end gap-4 bg-surface-container-lowest mt-auto">
+<button class="px-6 py-2 border border-primary text-primary rounded font-label-md hover:bg-surface-container-low transition-colors" onclick="document.getElementById('createUserModal').classList.add('hidden')">
+                    Cancelar
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded font-label-md hover:bg-primary-container transition-colors shadow-sm">
+                    Guardar Usuario
+                </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto py-stack-lg px-margin-desktop bg-primary text-on-primary flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<span class="font-headline-md text-headline-md font-bold text-on-primary dark:text-primary-fixed">Secretaría de Educación del Magdalena</span>
+<p class="font-body-sm text-body-sm opacity-80">© 2024 Secretaría de Educación del Magdalena - Gobernación del Magdalena. Todos los derechos reservados.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-label-sm text-label-sm">
+<a class="text-on-primary opacity-80 hover:opacity-100 transition-opacity active:scale-98 transition-transform" href="#">Políticas de Privacidad</a>
+<a class="text-on-primary opacity-80 hover:opacity-100 transition-opacity active:scale-98 transition-transform" href="#">Términos y Condiciones</a>
+<a class="text-on-primary opacity-80 hover:opacity-100 transition-opacity active:scale-98 transition-transform" href="#">Mapa del Sitio</a>
+<a class="text-on-primary opacity-80 hover:opacity-100 transition-opacity active:scale-98 transition-transform" href="#">Contacto</a>
+</div>
+</footer>
+</body></html>
