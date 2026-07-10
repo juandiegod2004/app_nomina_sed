@@ -105,16 +105,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             </div>
           </div>
 
-          {/* Acciones de la derecha: Notificación + Dropdown de Usuario */}
+          {/* Acciones de la derecha: Dropdown de Usuario */}
           <div className="flex items-center gap-3">
-            {/* Notificaciones */}
-            <button 
-              className="text-primary p-2 hover:bg-surface-container rounded-full transition-all active:scale-95 shrink-0"
-              title="Notificaciones"
-              onClick={() => alert('No tiene notificaciones de momento')}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>notifications</span>
-            </button>
 
             {/* Dropdown del perfil */}
             <div className="relative">

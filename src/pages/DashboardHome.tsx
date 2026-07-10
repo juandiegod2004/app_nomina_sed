@@ -14,17 +14,7 @@ interface ActivityItem {
   actualizadoEn: string;
 }
 
-interface MissingIed {
-  id: string;
-  nombre: string;
-}
 
-interface OverLimitAlert {
-  docente: string;
-  ied: string;
-  mes: number;
-  total: number;
-}
 
 export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate }) => {
   const [stats, setStats] = useState({
@@ -35,8 +25,6 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate }) => {
   });
 
   const [activities, setActivities] = useState<ActivityItem[]>([]);
-  const [missingIeds, setMissingIeds] = useState<MissingIed[]>([]);
-  const [overLimitAlerts, setOverLimitAlerts] = useState<OverLimitAlert[]>([]);
   const [loading, setLoading] = useState(true);
 
   const getMonthName = (num: number): string => {
@@ -104,75 +92,6 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate }) => {
         })
       }));
       setActivities(mappedActivities);
-
-      // 5. Alertas: IEDs que no han reportado en el mes actual
-      const currentMonth = new Date().getMonth() + 1;
-      const currentYear = 2026; // Año del sistema
-
-      const { data: allIeds, error: errAllIeds } = await supabase
-        .from('ieds')
-        .select('id, nombre');
-      if (errAllIeds) throw errAllIeds;
-
-      const { data: monthReports, error: errMonthReports } = await supabase
-        .from('reportes_horas_extras')
-        .select('ied_id')
-        .eq('mes', currentMonth)
-        .eq('año', currentYear);
-      if (errMonthReports) throw errMonthReports;
-
-      const reportedIeds = new Set((monthReports || []).map(r => r.ied_id));
-      const missing = (allIeds || [])
-        .filter(ied => !reportedIeds.has(ied.id))
-        .map(ied => ({ id: ied.id, nombre: ied.nombre }))
-        .slice(0, 5); // Mostrar máximo 5
-      setMissingIeds(missing);
-
-      // 6. Alertas: Docentes con horas por encima del tope de resolución (80 horas)
-      const { data: details, error: errDetails } = await supabase
-        .from('detalle_reporte')
-        .select(`
-          reporte_id,
-          residuo,
-          sustitucion,
-          jornada_unica,
-          adultos,
-          dom_diurno,
-          dom_nocturno,
-          fest_diurno,
-          fest_nocturno,
-          recargo_nocturno,
-          personal (nombres, apellidos),
-          reportes_horas_extras (
-            mes,
-            ieds (nombre)
-          )
-        `);
-      if (errDetails) throw errDetails;
-
-      const overLimit: OverLimitAlert[] = [];
-      (details || []).forEach((det: any) => {
-        const total = 
-          (det.residuo || 0) +
-          (det.sustitucion || 0) +
-          (det.jornada_unica || 0) +
-          (det.adultos || 0) +
-          (det.dom_diurno || 0) +
-          (det.dom_nocturno || 0) +
-          (det.fest_diurno || 0) +
-          (det.fest_nocturno || 0) +
-          (det.recargo_nocturno || 0);
-
-        if (total > 80) {
-          overLimit.push({
-            docente: `${det.personal?.nombres || ''} ${det.personal?.apellidos || ''}`,
-            ied: det.reportes_horas_extras?.ieds?.nombre || 'IED Asignada',
-            mes: det.reportes_horas_extras?.mes || currentMonth,
-            total
-          });
-        }
-      });
-      setOverLimitAlerts(overLimit.slice(0, 5)); // Mostrar máximo 5
 
     } catch (err: any) {
       console.error('Error al cargar datos del dashboard:', err.message);
@@ -245,10 +164,10 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate }) => {
       </div>
 
       {/* Main Dashboard Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="w-full">
         
-        {/* Left Column: Recent Activity Feed */}
-        <div className="lg:col-span-7 bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+        {/* Recent Activity Feed */}
+        <div className="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-5 select-none">
               <h3 className="text-sm font-bold text-primary flex items-center gap-1.5">
@@ -312,68 +231,6 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onNavigate }) => {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Right Column: Alerts & Reminders */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
-          
-          {/* Section: Alertas de Atención */}
-          <div className="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-bold text-primary mb-4 flex items-center gap-1.5 select-none">
-              <span className="material-symbols-outlined text-[#006492]" style={{ fontSize: '18px' }}>notification_important</span>
-              Alertas del Sistema
-            </h3>
-            
-            <div className="space-y-3">
-              {loading ? (
-                <div className="text-center text-xs text-on-surface-variant p-4">Analizando alertas...</div>
-              ) : (
-                <>
-                  {/* Alerta 1: Exceso de horas extras (> 80 horas) */}
-                  {overLimitAlerts.length > 0 && (
-                    <div className="p-3.5 bg-rose-50 border border-rose-100 rounded-xl flex gap-3 text-xs text-rose-800">
-                      <span className="material-symbols-outlined text-rose-600 select-none text-lg">warning</span>
-                      <div className="space-y-1">
-                        <span className="font-bold block">Tope de Horas Excedido (&gt;80h)</span>
-                        <ul className="list-disc list-inside space-y-0.5 opacity-90 text-[11px]">
-                          {overLimitAlerts.map((alert, i) => (
-                            <li key={i}>
-                              <strong>{alert.docente}</strong> ({alert.total}h) en {alert.ied}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Alerta 2: IEDs sin reporte en el mes en curso */}
-                  {missingIeds.length > 0 ? (
-                    <div className="p-3.5 bg-amber-50 border border-amber-100 rounded-xl flex gap-3 text-xs text-amber-800">
-                      <span className="material-symbols-outlined text-amber-600 select-none text-lg">emergency_home</span>
-                      <div className="space-y-1">
-                        <span className="font-bold block">Falta Carga de Novedades (Mes Actual)</span>
-                        <p className="text-[11px] opacity-90 mb-1.5">Las siguientes instituciones no han reportado novedades de Horas Extras:</p>
-                        <ul className="list-disc list-inside space-y-0.5 text-[11px] opacity-90">
-                          {missingIeds.map((ied) => (
-                            <li key={ied.id} className="truncate max-w-[280px]">{ied.nombre}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="p-3.5 bg-emerald-50 border border-emerald-100 rounded-xl flex gap-3 text-xs text-emerald-800">
-                      <span className="material-symbols-outlined text-emerald-600 select-none text-lg">check_circle</span>
-                      <div>
-                        <span className="font-bold block">Todas las IED reportadas</span>
-                        <span>Todas las instituciones del departamento cargaron novedades en el mes.</span>
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-
         </div>
 
       </div>
