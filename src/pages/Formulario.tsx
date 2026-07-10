@@ -343,6 +343,61 @@ export const Formulario: React.FC = () => {
     );
   };
 
+  const handleDeleteRow = async (teacher: Teacher) => {
+    const isCorrection = existingReport && existingReport.estado === 'observado';
+    const isApproved = existingReport && existingReport.estado === 'aprobado';
+    
+    if (isApproved || isCorrection) {
+      showAlert('warning', 'Acción No Permitida', 'No se pueden eliminar filas de un reporte aprobado u observado.');
+      return;
+    }
+
+    const detailId = hoursMatrix[teacher.id]?.id;
+
+    // Si tiene ID en la base de datos (ya está guardado) y el reporte está pendiente
+    if (detailId && existingReport && existingReport.estado === 'pendiente') {
+      showAlert(
+        'warning',
+        'Confirmar Eliminación',
+        `¿Seguro que deseas quitar a este funcionario (${enmascararNombre(teacher.nombres)} ${enmascararNombre(teacher.apellidos)}) del reporte de ${getMonthName(selectedMonth)}?`,
+        async () => {
+          try {
+            // Eliminar de detalle_reporte en base de datos
+            const { error } = await supabase
+              .from('detalle_reporte')
+              .delete()
+              .eq('id', detailId);
+
+            if (error) throw error;
+
+            // Eliminar de los estados locales
+            setTeachers(prev => prev.filter(t => t.id !== teacher.id));
+            setHoursMatrix(prev => {
+              const copy = { ...prev };
+              delete copy[teacher.id];
+              return copy;
+            });
+            
+            showAlert('success', 'Eliminado', 'Funcionario removido del reporte.');
+          } catch (err: any) {
+            console.error(err);
+            showAlert('error', 'Error al Eliminar', 'No se pudo eliminar el registro: ' + (err.message || err));
+          }
+        },
+        true
+      );
+    } else {
+      // Si está en borrador local (sin guardar) o no tiene registro en base de datos
+      setTeachers(prev => prev.filter(t => t.id !== teacher.id));
+      setHoursMatrix(prev => {
+        const copy = { ...prev };
+        delete copy[teacher.id];
+        return copy;
+      });
+      showAlert('success', 'Eliminado', 'Funcionario removido del reporte.');
+    }
+  };
+
   const handleOpenAddDocente = () => {
     setTeacherTipo('docente');
     setTeacherCedula('');
@@ -784,6 +839,7 @@ export const Formulario: React.FC = () => {
                     <th className={`py-2.5 px-2 text-center w-24 transition-colors ${checkExceeds.jornadaUnica ? 'bg-rose-100 text-rose-800 font-bold border-x border-rose-200' : ''}`}>Jornada Única</th>
                     <th className={`py-2.5 px-2 text-center w-24 transition-colors ${checkExceeds.adultos ? 'bg-rose-100 text-rose-800 font-bold border-x border-rose-200' : ''}`}>Adultos</th>
                     <th className="py-2.5 px-4 text-center font-bold w-28">Total Horas</th>
+                    <th className="py-2.5 px-2 text-center font-bold w-14">Acción</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 text-xs text-on-surface">
@@ -822,6 +878,20 @@ export const Formulario: React.FC = () => {
                       {/* Total Horas */}
                       <td className="py-2.5 px-4 text-center font-bold text-xs text-primary select-none">
                         {calculateDocenteHours(teacher.id)}
+                      </td>
+
+                      {/* Acción de Eliminar */}
+                      <td className="py-2.5 px-2 text-center select-none">
+                        {(!existingReport || existingReport.estado === 'pendiente') && (
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteRow(teacher)}
+                            className="text-outline hover:text-red-600 transition-colors flex items-center justify-center mx-auto"
+                            title="Quitar funcionario del reporte"
+                          >
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -884,6 +954,7 @@ export const Formulario: React.FC = () => {
                     <th className="py-2.5 px-2 text-center w-24">Fest. Noc</th>
                     <th className="py-2.5 px-2 text-center w-24">Recargo Noc</th>
                     <th className="py-2.5 px-4 text-center font-bold w-28">Total Horas</th>
+                    <th className="py-2.5 px-2 text-center font-bold w-14">Acción</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/30 text-xs text-on-surface">
@@ -913,6 +984,20 @@ export const Formulario: React.FC = () => {
                       {/* Total Horas */}
                       <td className="py-2.5 px-4 text-center font-bold text-xs text-primary select-none">
                         {calculateAdministrativoHours(teacher.id)}
+                      </td>
+
+                      {/* Acción de Eliminar */}
+                      <td className="py-2.5 px-2 text-center select-none">
+                        {(!existingReport || existingReport.estado === 'pendiente') && (
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteRow(teacher)}
+                            className="text-outline hover:text-red-600 transition-colors flex items-center justify-center mx-auto"
+                            title="Quitar funcionario del reporte"
+                          >
+                            <span className="material-symbols-outlined text-[18px]">delete</span>
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
