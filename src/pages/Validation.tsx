@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../services/supabase';
 import { useAlert } from '../contexts/AlertContext';
+import { enmascararNombre } from '../utils/mask';
 
 interface ReportRecord {
   id: string; // Report database UUID
   iedId: string;
   iedName: string;
+  rectorName?: string;
   mes: number;
   año: number;
   creado_en: string;
@@ -109,7 +111,8 @@ export const Validation: React.FC = () => {
           exportado,
           excede_tope,
           creado_en,
-          ieds (id, nombre)
+          ieds (id, nombre),
+          usuarios!rector_id (nombre)
         `)
         .order('creado_en', { ascending: false });
       
@@ -135,6 +138,7 @@ export const Validation: React.FC = () => {
         id: r.id,
         iedId: r.ieds?.id || '',
         iedName: r.ieds?.nombre || 'IED Desconocida',
+        rectorName: r.usuarios?.nombre || undefined,
         mes: r.mes,
         año: r.año,
         creado_en: new Date(r.creado_en).toLocaleDateString('es-CO', {
@@ -596,7 +600,14 @@ export const Validation: React.FC = () => {
                       <React.Fragment key={report.id}>
                         {/* Main Data Row */}
                         <tr className="hover:bg-surface-container-low/10 transition-colors group">
-                          <td className="py-3.5 px-4 font-bold text-primary">{report.iedName}</td>
+                          <td className="py-3.5 px-4 font-bold text-primary">
+                            <div className="leading-tight">{report.iedName}</div>
+                            {report.rectorName && (
+                              <div className="text-[10px] text-on-surface-variant font-normal mt-0.5">
+                                Rector: {enmascararNombre(report.rectorName)}
+                              </div>
+                            )}
+                          </td>
                           <td className="py-3.5 px-3 text-center font-semibold text-on-surface-variant">
                             {getMonthName(report.mes)} {report.año}
                           </td>
@@ -822,7 +833,7 @@ export const Validation: React.FC = () => {
                       {modalDocentes.map((det) => (
                         <tr key={det.id} className="hover:bg-surface-container-low/10">
                           <td className="py-2 px-3 font-mono font-semibold">{det.cedula}</td>
-                          <td className="py-2 px-3 font-bold text-primary">{det.nombres} {det.apellidos}</td>
+                          <td className="py-2 px-3 font-bold text-primary">{enmascararNombre(`${det.nombres} ${det.apellidos}`)}</td>
                           <td className="py-2 px-3 text-on-surface-variant font-medium">{det.cargo} {det.grado_escalafon ? `(Esc. ${det.grado_escalafon})` : ''}</td>
                           <td className="py-2 px-2 text-center">{det.residuo}</td>
                           <td className="py-2 px-2 text-center">{det.sustitucion}</td>
@@ -859,7 +870,7 @@ export const Validation: React.FC = () => {
                       {modalAdministrativos.map((det) => (
                         <tr key={det.id} className="hover:bg-surface-container-low/10">
                           <td className="py-2 px-3 font-mono font-semibold">{det.cedula}</td>
-                          <td className="py-2 px-3 font-bold text-primary">{det.nombres} {det.apellidos}</td>
+                          <td className="py-2 px-3 font-bold text-primary">{enmascararNombre(`${det.nombres} ${det.apellidos}`)}</td>
                           <td className="py-2 px-3 text-on-surface-variant font-medium">{det.cargo}</td>
                           <td className="py-2 px-2 text-center">{det.dom_diurno}</td>
                           <td className="py-2 px-2 text-center">{det.dom_nocturno}</td>

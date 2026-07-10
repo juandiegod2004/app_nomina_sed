@@ -5,6 +5,7 @@ import { reportService } from '../services/reportService';
 import type { ReportDetail, ReportHeader } from '../services/reportService';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from '../contexts/AlertContext';
+import { enmascararNombre } from '../utils/mask';
 
 interface Teacher {
   id: string;
@@ -790,7 +791,7 @@ export const Formulario: React.FC = () => {
                     <tr key={teacher.id} className="hover:bg-surface-container-low/10 transition-colors">
                       <td className="py-2.5 px-4 font-semibold text-primary sticky left-0 bg-surface-bright shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
                         <div className="flex flex-col">
-                          <span className="font-bold">{teacher.nombres} {teacher.apellidos}</span>
+                          <span className="font-bold">{enmascararNombre(`${teacher.nombres} ${teacher.apellidos}`)}</span>
                           <span className="text-[9px] text-on-surface-variant font-mono">CC: {teacher.cedula} • {teacher.cargo} {teacher.grado_escalafon ? `(Esc. ${teacher.grado_escalafon})` : ''}</span>
                         </div>
                       </td>
@@ -890,7 +891,7 @@ export const Formulario: React.FC = () => {
                     <tr key={teacher.id} className="hover:bg-surface-container-low/10 transition-colors">
                       <td className="py-2.5 px-4 font-semibold text-primary sticky left-0 bg-surface-bright shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
                         <div className="flex flex-col">
-                          <span className="font-bold">{teacher.nombres} {teacher.apellidos}</span>
+                          <span className="font-bold">{enmascararNombre(`${teacher.nombres} ${teacher.apellidos}`)}</span>
                           <span className="text-[9px] text-on-surface-variant font-mono">CC: {teacher.cedula} • {teacher.cargo}</span>
                         </div>
                       </td>

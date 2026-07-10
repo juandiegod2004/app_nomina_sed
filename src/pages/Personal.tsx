@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useAlert } from '../contexts/AlertContext';
+import { enmascararNombre } from '../utils/mask';
 import { personalService } from '../services/personalService';
 import type { PersonalRecord } from '../services/personalService';
 import { rectorService } from '../services/rectorService';
@@ -361,7 +362,7 @@ export const Personal = () => {
                         {record.cedula}
                       </td>
                       <td className="py-4 px-6 font-bold text-primary">
-                        {record.nombres} {record.apellidos}
+                        {enmascararNombre(`${record.nombres} ${record.apellidos}`)}
                       </td>
                       <td className="py-4 px-6 font-medium text-slate-600">
                         {record.cargo}

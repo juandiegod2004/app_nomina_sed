@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { rectorService } from '../services/rectorService';
 import type { RectorRecord, IedOption } from '../services/rectorService';
 import { useAlert } from '../contexts/AlertContext';
+import { enmascararNombre } from '../utils/mask';
 
 export const Rectors: React.FC = () => {
   const { showAlert } = useAlert();
@@ -369,7 +370,7 @@ export const Rectors: React.FC = () => {
                           {rector.cedula}
                         </td>
                         <td className="py-4 px-6 font-bold text-primary">
-                          {rector.nombre}
+                          {enmascararNombre(rector.nombre)}
                         </td>
                         <td className="py-4 px-6 text-on-surface-variant font-medium">
                           {rector.correo_institucional}
