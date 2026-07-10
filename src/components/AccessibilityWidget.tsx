@@ -142,13 +142,8 @@ export const AccessibilityWidget: React.FC = () => {
           {/* Header del Panel */}
           <div className="bg-blue-600 text-white p-6 relative flex flex-col items-center text-center gap-3">
             
-            {/* Fila superior: Idioma + Cerrar */}
-            <div className="w-full flex justify-between items-center text-xs">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full cursor-pointer select-none">
-                <span>🇪🇸</span>
-                <span className="font-bold">Español</span>
-                <span className="material-symbols-outlined text-[12px]">expand_more</span>
-              </div>
+            {/* Fila superior: Cerrar */}
+            <div className="w-full flex justify-end items-center text-xs">
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
@@ -422,12 +417,6 @@ export const AccessibilityWidget: React.FC = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* Footer del Panel */}
-          <div className="bg-white px-6 py-4 border-t border-outline-variant/30 text-center text-[10px] text-on-surface-variant font-medium select-none flex justify-between items-center">
-            <span>Desarrollado por OneTap</span>
-            <span>v1.0.0</span>
           </div>
 
         </div>

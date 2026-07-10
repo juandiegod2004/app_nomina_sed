@@ -13,8 +13,13 @@
 /* --- ACCESSIBILITY CUSTOM OVERRIDES --- */
 
 /* Legible Font */
-body.fuente-legible, body.fuente-legible * {
+body.fuente-legible, body.fuente-legible :not(.material-symbols-outlined) {
   font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+/* Asegurar que los iconos de Material Symbols no se rompan nunca */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
 }
 
 /* Force Left Align */
